@@ -1,0 +1,48 @@
+---
+# COPY THIS FILE to content/journal/your-post-slug.mdx
+# (the filename becomes the URL: /journal/your-post-slug)
+# Files starting with "_" are ignored by the site.
+
+title: Post title goes here
+dek: One sentence that makes someone want to read it, or at least skim the specs.
+date: 2026-10-20 # YYYY-MM-DD. Future dates stay hidden until that day.
+type: build-log # case-study | build-log | ai-stack
+tags:
+  - supabase
+  - row-level-security
+project: uxrvision # uxrvision | dogfoodie | fidofoodie | null
+vendor: supabase # vercel | supabase | null (optional)
+day: 1 # optional: shows "Day N" if you run a daily series
+featured: false # true = pinned at the top of the journal
+draft: true # true = hidden in production. Flip to false to publish.
+# videoUrl: https://www.youtube.com/watch?v=XXXX # optional embedded walkthrough
+specs:
+  synopsis: One sentence on what this build was and why it matters.
+  built: What was built (e.g. "Realtime dashboard")
+  timeToShip: e.g. "3 hours"
+  difficulty: 3 # 1 (starter) to 5 (expert)
+  tools:
+    - Supabase Realtime
+    - Vercel Edge Functions
+    - Cursor
+---
+
+## The problem
+
+What was going wrong, or what did you need? Be specific.
+
+## What I tried
+
+The approach, with a code sample if it helps:
+
+```ts
+// the interesting part, not the whole file
+```
+
+## The gotcha
+
+The surprising thing nobody tells you. This is the part people share.
+
+## What I'd do differently
+
+Honest trade-offs and what you'd change next time.

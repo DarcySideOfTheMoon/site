@@ -1,0 +1,29 @@
+---
+title: UXRVision
+kind: Hosted product
+order: 1
+summary: "A hosted UX research tool with real-time test sessions, AI-assisted analysis loops, and persistent test metrics. Private codebase, public product."
+stack:
+  - Next.js
+  - Vercel Edge Functions
+  - Supabase Auth
+  - Supabase Realtime
+walkthroughStyle: Clean demo
+status: building
+accent: pink
+# Fill these in as each piece ships. Empty values show a "coming soon" panel.
+# url: https://uxrtest.vision
+# prototypeUrl: https://uxrtest.vision
+# videoUrl: https://www.youtube.com/watch?v=XXXX
+# repoUrl is intentionally omitted: this codebase is private.
+---
+
+## What it is
+
+UXRVision runs user research sessions end to end: participants join a test session, session state and metrics persist in real time, and an AI analysis loop on Vercel Edge Functions turns raw sessions into findings quickly.
+
+## How it's built
+
+Supabase handles user authentication, test session state, and relational tables for user test metrics. Vercel Edge Functions keep the AI analysis loop close to the user for fast feedback.
+
+The repository is private, but the product and its URL are public. The journal entries linked below cover the architecture decisions and trade-offs in detail.
