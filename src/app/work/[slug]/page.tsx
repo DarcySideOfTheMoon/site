@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: Props) {
               <div className="post-list" style={{ marginTop: 0 }}>
                 {related.map((p) => (
                   <Link key={p.slug} href={`/journal/${p.slug}`} className="post-row">
-                    <div className="meta meta--date">{formatDate(p.date).toUpperCase()}</div>
+                    <div className="meta meta--date">{formatDate(p.date, "dots")}</div>
                     <div>
                       <h3>{p.title}</h3>
                       <p>{p.dek}</p>

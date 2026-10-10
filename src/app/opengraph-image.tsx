@@ -21,7 +21,7 @@ export default function Image() {
         }}
       >
         <div style={{ fontSize: 26, letterSpacing: 6, color: "#39B7FF", textTransform: "uppercase" }}>
-          Senior product designer · Remote
+          Design that ships, reasoning attached
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 28 }}>
           <div style={{ fontSize: 132, lineHeight: 0.95, fontWeight: 800, textTransform: "uppercase" }}>

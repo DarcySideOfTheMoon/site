@@ -28,6 +28,7 @@ export interface PostMeta {
   title: string;
   dek: string;
   date: string; // YYYY-MM-DD
+  time: string | null; // optional "HH:mm" in Pacific time (Olympia, WA)
   type: PostType;
   tags: string[];
   project: string | null; // a project slug, or null
@@ -114,6 +115,23 @@ function isVisible(meta: { draft: boolean; date: string }): boolean {
   return meta.date <= today;
 }
 
+/** Accepts "15:30" (quoted in YAML). Returns "HH:mm" or null. */
+function parseTime(value: unknown): string | null {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(String(value ?? "").trim());
+  if (!m) return null;
+  return `${m[1].padStart(2, "0")}:${m[2]}`;
+}
+
+/** "15:30" on 2026-10-10 -> "3:30 PM PDT" (PST in winter, PDT in summer, automatically). */
+export function formatPacificTime(iso: string, time: string): string {
+  const [h, min] = time.split(":").map(Number);
+  const zone = new Intl.DateTimeFormat("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" })
+    .formatToParts(new Date(`${iso}T12:00:00Z`))
+    .find((p) => p.type === "timeZoneName")?.value ?? "PT";
+  const hour12 = h % 12 === 0 ? 12 : h % 12;
+  return `${hour12}:${String(min).padStart(2, "0")} ${h < 12 ? "AM" : "PM"} ${zone}`;
+}
+
 /* ---------- journal ---------- */
 
 function parsePost(file: string): Post {
@@ -137,6 +155,7 @@ function parsePost(file: string): Post {
     title: String(data.title ?? slug),
     dek: String(data.dek ?? ""),
     date: toIsoDate(data.date),
+    time: parseTime(data.time),
     type: (data.type as PostType) ?? "build-log",
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
     project: str(data.project),
@@ -237,7 +256,14 @@ export function getHeadings(source: string): { id: string; text: string }[] {
   return out;
 }
 
-export function formatDate(iso: string, style: "short" | "long" = "short"): string {
+/** 2026-10-10 -> 10.10.26 */
+export function dotDate(iso: string): string {
+  const [y, m, d] = iso.split("-");
+  return `${m}.${d}.${y.slice(2)}`;
+}
+
+export function formatDate(iso: string, style: "short" | "long" | "dots" = "short"): string {
+  if (style === "dots") return dotDate(iso);
   const d = new Date(`${iso}T00:00:00Z`);
   return d.toLocaleDateString("en-US", {
     timeZone: "UTC",

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getAllPosts, getAllProjects, formatDate, postTypeLabels } from "@/lib/content";
 import { ProjectCard } from "@/components/ProjectCard";
-import { Marquee } from "@/components/Marquee";
 
 export const revalidate = 3600; // lets scheduled posts appear without a redeploy
 
@@ -22,9 +21,9 @@ export default function Home() {
         <div className="container">
           <div className="eyebrow reveal">Senior product designer · Remote</div>
           <h1 className="display reveal" style={{ animationDelay: "60ms" }}>
-            Design systems
+            Design that ships,
             <br />
-            that ship themselves
+            <span className="grad">reasoning attached.</span>
           </h1>
           <p className="reveal" style={{ animationDelay: "120ms" }}>
             I&apos;m Darcy, a product designer who prototypes, builds, and documents with AI-native tooling.
@@ -41,8 +40,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <Marquee />
 
       <section className="section" id="work">
         <div className="container">
@@ -89,7 +86,7 @@ export default function Home() {
             <div className="post-list" style={{ marginTop: 0 }}>
               {latest.map((p) => (
                 <Link key={p.slug} href={`/journal/${p.slug}`} className="post-row">
-                  <div className="meta meta--date">{formatDate(p.date).toUpperCase()}</div>
+                  <div className="meta meta--date">{formatDate(p.date, "dots")}</div>
                   <div>
                     <h3>{p.title}</h3>
                     <p>{p.dek}</p>

@@ -8,6 +8,7 @@ import {
   getPost,
   getProject,
   formatDate,
+  formatPacificTime,
   postTypeLabels,
 } from "@/lib/content";
 import { Mdx } from "@/components/Mdx";
@@ -86,7 +87,7 @@ export default async function PostPage({ params }: Props) {
               <div className="article__meta">
                 <span className="pill-solid">{postTypeLabels[post.type]}</span>
                 <span className="label" style={{ fontSize: 11, letterSpacing: "0.05em" }}>
-                  <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readingMinutes} min read
+                  <time dateTime={post.date}>{formatDate(post.date, "long")}</time>{post.time ? ` · ${formatPacificTime(post.date, post.time)}` : ""} · {post.readingMinutes} min read
                   {post.day ? ` · Day ${post.day}` : ""}
                 </span>
                 {post.draft && (

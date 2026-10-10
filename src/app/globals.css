@@ -129,6 +129,14 @@ iframe {
   color: var(--blue);
 }
 
+.grad {
+  background: linear-gradient(90deg, var(--pink), var(--violet), var(--blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
 .spectrum {
   height: 6px;
   width: 100%;

@@ -20,13 +20,10 @@ const typeLabel: Record<PostType, string> = {
   "ai-stack": "AI stack",
 };
 
+/** 2026-10-10 -> 10.10.26 */
 function fmt(iso: string) {
-  return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", {
-    timeZone: "UTC",
-    month: "short",
-    day: "2-digit",
-    year: "numeric",
-  });
+  const [y, m, d] = iso.split("-");
+  return `${m}.${d}.${y.slice(2)}`;
 }
 
 export function JournalBrowser({
@@ -219,7 +216,7 @@ export function JournalBrowser({
         <div className="post-list">
           {rest.map((p) => (
             <Link key={p.slug} href={`/journal/${p.slug}`} className="post-row">
-              <div className="meta meta--date">{fmt(p.date).toUpperCase()}</div>
+              <div className="meta meta--date">{fmt(p.date)}</div>
               <div>
                 <h3>{p.title}</h3>
                 <p>{p.dek}</p>

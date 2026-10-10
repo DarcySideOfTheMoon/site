@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} | Senior product designer`,
+    default: `${site.name} | Design that ships, reasoning attached`,
     template: `%s | ${site.name}`,
   },
   description: site.description,
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} | Senior product designer`,
+    title: `${site.name} | Design that ships, reasoning attached`,
     description: site.description,
     url: site.url,
   },
