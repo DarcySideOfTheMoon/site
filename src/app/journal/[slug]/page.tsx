@@ -88,7 +88,7 @@ export default async function PostPage({ params }: Props) {
                 <span className="pill-solid">{postTypeLabels[post.type]}</span>
                 <span className="label" style={{ fontSize: 11, letterSpacing: "0.05em" }}>
                   <time dateTime={post.date}>{formatDate(post.date, "long")}</time>{post.time ? ` · ${formatPacificTime(post.date, post.time)}` : ""} · {post.readingMinutes} min read
-                  {post.day ? ` · Day ${post.day}` : ""}
+                  {post.day !== null ? ` · Day ${post.day}` : ""}
                 </span>
                 {post.draft && (
                   <span className="chip" style={{ color: "var(--amber)", borderColor: "var(--amber)" }}>
